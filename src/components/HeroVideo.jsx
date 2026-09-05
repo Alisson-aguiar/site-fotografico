@@ -181,7 +181,7 @@ export default function HeroVideo({ onVideoComplete }) {
             de forma passiva, fluindo naturalmente com a opacidade gerada 
             pela classe .visible controlada pelo scroll.
         */}
-        <div id="video-end-banner">
+        <div id="video-end-banner" style={{marginTop:'80px'}}>
           <div className="banner-actions banner-mobile" style={{ marginBottom: '32px', display: 'flex', alignItems: 'center', gap: '24px' }}>
 
             <div className='mobile-hj'  style={{ position: 'relative', width: 90, height: 90, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
