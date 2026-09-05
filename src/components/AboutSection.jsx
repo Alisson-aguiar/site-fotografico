@@ -64,7 +64,7 @@ export default function AboutSection() {
               }}
             >
               <img
-                src="../../public/image/judson-henrique.png"
+                src="./image/judson-henrique.png"
                 alt="Henrique Judson — Fotógrafo"
                 loading="lazy"
                 className="about-img"
