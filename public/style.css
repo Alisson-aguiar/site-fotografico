@@ -1180,4 +1180,7 @@ body {
   .mobile-stats-p {
     font-size: 20px !important;
   }
+  .banner-actions{
+    margin-top: 25px!important;
+  }
 }
