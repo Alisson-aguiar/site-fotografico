@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    padding: 0;
+    /* Height controls how much the user has to scroll */
+    height: 500vh;
+    background-color: #000;
+}
+
+.canvas-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+canvas {
+    /* Maximize canvas without losing aspect ratio */
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
