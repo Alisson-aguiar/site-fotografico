@@ -207,6 +207,7 @@ body {
   /* background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, transparent 100%);  */
   padding: 60px 40px;
   border-radius: 20px;
+  margin-top: 100px;
 }
 
 #video-end-banner .banner-actions {
@@ -1040,6 +1041,7 @@ body {
   z-index: 9990;
   pointer-events: none;
 }
+
 
 /* ── RESPONSIVE ───────────────────────────────────── */
 @media (max-width: 1024px) {
