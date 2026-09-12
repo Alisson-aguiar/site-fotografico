@@ -182,7 +182,9 @@ export default function HeroVideo({ onVideoComplete }) {
             pela classe .visible controlada pelo scroll.
         */}
         <div id="video-end-banner">
-          <div className="banner-actions banner-mobile" style={{ marginBottom: '32px', display: 'flex', alignItems: 'center', gap: '24px' }}>
+          {/* <div className="banner-actions banner-mobile" style={{ marginBottom: '32px', display: 'flex', alignItems: 'center', gap: '24px' }}> */}
+          <div className="banner-actions banner-mobile"
+            style={{ marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '24px', flexWrap: 'wrap' }}>
 
             <div className='mobile-hj'  style={{ position: 'relative', width: 90, height: 90, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <div style={{ position: 'absolute', fontFamily: "'Cinzel', serif", fontSize: '26px', fontWeight: '100', color: '#c99872', zIndex: 2 }}>
@@ -221,6 +223,7 @@ export default function HeroVideo({ onVideoComplete }) {
               marginBottom: '16px',
               textShadow: '0 4px 20px rgba(0,0,0,0.4)',
               maxWidth: '700px',
+              width: '100%',
             }}>
               Transformando momentos em <span style={{color: '#c99872'}}>memórias inesquecíveis</span>  através da fotografia.
             </h1>
@@ -237,7 +240,9 @@ export default function HeroVideo({ onVideoComplete }) {
             </p>
           </div>
 
-          <div className="banner-actions" style={{ display: 'flex', gap: '20px', marginTop: '40px', position: 'relative', zIndex: 2 }}>
+          {/* <div className="banner-actions" style={{ display: 'flex', gap: '20px', marginTop: '40px', position: 'relative', zIndex: 2 }}> */}
+          <div className="banner-actions"
+            style={{ display: 'flex', gap: '20px', marginTop: '24px', position: 'relative', zIndex: 2, flexWrap: 'wrap' }}>
             <a href="#portfolio" className="btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <ImageIcon size={18} />
               <span>Ver Portfólio</span>

@@ -41,7 +41,7 @@ export default function Navbar({ isVisible }) {
       className='nav-mobile'
         style={{
           maxWidth: 1320,
-          margin: '20px auto 0',
+          margin: '10px auto 0',
           padding: '14px 28px',
           display: 'flex',
           justifyContent: 'space-between',
@@ -69,7 +69,7 @@ export default function Navbar({ isVisible }) {
           className='nav-title'
             style={{
               fontFamily: "'Cinzel', serif",
-              fontSize: '1rem',
+              fontSize: '0.85rem',
               letterSpacing: '0.15em',
               fontWeight: 600,
             }}
@@ -95,7 +95,7 @@ export default function Navbar({ isVisible }) {
                 style={{
                   color: 'rgba(255, 255, 255, 0.75)',
                   textDecoration: 'none',
-                  fontSize: '0.85rem',
+                  fontSize: '0.75rem',
                   letterSpacing: '0.08em',
                   textTransform: 'uppercase',
                   fontWeight: 500,
