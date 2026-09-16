@@ -17,7 +17,7 @@ export default function HeroVideo({ onVideoComplete }) {
 
     const ctx = canvas.getContext('2d');
     
-    let frameCount = 185;
+    let frameCount = 177;
     const images = [];
     let imagesLoaded = 0;
     let videoCompleteEmitted = false;
@@ -59,14 +59,14 @@ export default function HeroVideo({ onVideoComplete }) {
       .then((res) => res.json())
       .then((data) => {
         if (!active) return;
-        frameCount = data.frameCount || 185;
+        frameCount = Math.min(data.frameCount || 177, 177);
         // Restaurando a matemática Vanilla exata
         videoSection.style.height = (frameCount * PX_PER_FRAME) + window.innerHeight + 'px';
         preloadImages();
       })
       .catch(() => {
         if (!active) return;
-        frameCount = 185;
+        frameCount = 177;
         videoSection.style.height = (frameCount * PX_PER_FRAME) + window.innerHeight + 'px';
         preloadImages();
       });
