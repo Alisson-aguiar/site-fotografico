@@ -279,7 +279,10 @@ body {
   }
 
   #video-end-banner .banner-actions {
-    margin-top: 50px !important;
+    margin-top: 20px !important;
+  }
+  .banner-mobile{
+    margin-top: 20px !important;
   }
 }
 
