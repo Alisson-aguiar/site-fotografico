@@ -267,10 +267,7 @@ body {
   #video-end-banner {
     padding: 24px 32px;
     max-width: 780px;
-  }
-
-  .leptop {
-    margin-top: 50px!important;
+    margin-top: 20px;
   }
 
   #video-end-banner h1 {

@@ -186,7 +186,7 @@ export default function HeroVideo({ onVideoComplete }) {
           <div className="banner-actions banner-mobile"
             style={{ marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '24px', flexWrap: 'wrap' }}>
 
-            <div className='mobile-hj leptop'  style={{ position: 'relative', width: 90, height: 90, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div className='mobile-hj'  style={{ position: 'relative', width: 90, height: 90, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <div style={{ position: 'absolute', fontFamily: "'Cinzel', serif", fontSize: '26px', fontWeight: '100', color: '#c99872', zIndex: 2 }}>
                 HJ
               </div>
@@ -195,7 +195,7 @@ export default function HeroVideo({ onVideoComplete }) {
               </div>
             </div>
 
-            <div className='leptop' style={{
+            <div style={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '12px',
