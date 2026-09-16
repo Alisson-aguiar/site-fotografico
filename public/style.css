@@ -262,7 +262,7 @@ body {
 }
 
 /* Notebooks / telas de altura média */
-@media (max-height: 850px) and (min-width: 641px) {
+@media (max-height: 900px) and (min-width: 641px) {
   #video-end-banner {
     padding: 24px 32px;
     max-width: 780px;
@@ -279,7 +279,7 @@ body {
   }
 
   #video-end-banner .banner-actions {
-    margin-top: 50px !important;
+    margin-top: 20px !important;
   }
 }
 
