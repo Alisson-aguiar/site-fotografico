@@ -107,6 +107,16 @@ export default function HeroVideo({ onVideoComplete }) {
              if (endBanner) endBanner.classList.remove('visible');
           }
 
+          // Show/Hide Scroll Indicator
+          const scrollIndicator = document.getElementById('scroll-indicator');
+          if (scrollIndicator) {
+             if (frameIndex > 3) {
+                 scrollIndicator.classList.add('hidden');
+             } else {
+                 scrollIndicator.classList.remove('hidden');
+             }
+          }
+
           // Video Complete trigger area
           if (!videoCompleteEmitted && scrollTop >= videoScrollHeight - 10) {
             drawFrame(frameCount - 1); // hold last frame
@@ -152,6 +162,11 @@ export default function HeroVideo({ onVideoComplete }) {
     <div id="video-section" ref={containerRef}>
       <div id="video-sticky">
         <canvas id="video-canvas"></canvas>
+
+        <div id="scroll-indicator" className="scroll-indicator">
+          <div className="mouse"></div>
+          <p>Role para explorar</p>
+        </div>
 
         <div id="scroll-cards-container">
           <div className="scroll-card card-top-left" data-start="0.05" data-end="0.35">
