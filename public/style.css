@@ -278,12 +278,10 @@ body {
     line-height: 1.5 !important;
   }
 
-  #video-end-banner .banner-actions {
+  /* #video-end-banner .banner-actions {
     margin-top: 20px !important;
-  }
-  .banner-mobile{
-    margin-top: 20px !important;
-  }
+  } */
+
 }
 
 /* ── LANDING PAGE (hidden until video ends) ───────── */
