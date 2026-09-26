@@ -197,19 +197,14 @@ h3,
 }
 
 .section-spacing {
-  padding: 140px 0;
+  padding: 180px 0;
   position: relative;
 }
 
 @media (max-width: 768px) {
   .section-spacing {
-    padding: 90px 0;
+    padding: 120px 0;
   }
-
-  .nav-mobile {
-    margin-top: 5px !important;
-  }
-
 }
 
 @media (max-width: 400px) {

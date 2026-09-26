@@ -17,14 +17,55 @@ export default function HeroVideo({ onVideoComplete }) {
 
     const ctx = canvas.getContext('2d');
     
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const isMobile = window.innerWidth <= 768;
+
+    if (isMobile) {
+      // Mobile version: Only load the last frame and show banner immediately
+      const img = new Image();
+      img.src = `/frames/frame_0177.webp`;
+      img.onload = () => {
+        if (!active) return;
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      };
+      
+      videoSection.style.height = window.innerHeight + 'px';
+      
+      if (endBanner) endBanner.classList.add('visible');
+      
+      const scrollIndicator = document.getElementById('scroll-indicator');
+      if (scrollIndicator) scrollIndicator.style.display = 'none';
+
+      const scrollCardsContainer = document.getElementById('scroll-cards-container');
+      if (scrollCardsContainer) scrollCardsContainer.style.display = 'none';
+
+      onVideoComplete?.(true);
+
+      const handleResizeMobile = () => {
+        if (!active) return;
+        videoSection.style.height = window.innerHeight + 'px';
+        if (img.complete && img.naturalWidth > 0) {
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        }
+      };
+      window.addEventListener('resize', handleResizeMobile);
+
+      return () => {
+        active = false;
+        window.removeEventListener('resize', handleResizeMobile);
+      };
+    }
+
+    // Desktop version: Full cinematic scroll
     let frameCount = 177;
     const images = [];
     let imagesLoaded = 0;
     let videoCompleteEmitted = false;
     const PX_PER_FRAME = 24;
-    
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
 
     function preloadImages() {
       for (let i = 1; i <= frameCount; i++) {
@@ -60,7 +101,6 @@ export default function HeroVideo({ onVideoComplete }) {
       .then((data) => {
         if (!active) return;
         frameCount = Math.min(data.frameCount || 177, 177);
-        // Restaurando a matemática Vanilla exata
         videoSection.style.height = (frameCount * PX_PER_FRAME) + window.innerHeight + 'px';
         preloadImages();
       })
@@ -79,17 +119,14 @@ export default function HeroVideo({ onVideoComplete }) {
         rafId = null;
         if (!active) return;
 
-        // Medição em tempo real para evitar falhas do React
         const scrollTop = window.scrollY || document.documentElement.scrollTop;
         const videoScrollHeight = videoSection.offsetHeight - window.innerHeight;
 
         if (scrollTop <= videoScrollHeight) {
-          // Lógica Clássica de mapeamento proporcional
           const scrollFraction = scrollTop / videoScrollHeight;
           const frameIndex = Math.floor(scrollFraction * frameCount);
           drawFrame(frameIndex);
 
-          // Animate cards
           scrollCards.forEach(card => {
             const start = parseFloat(card.dataset.start);
             const end = parseFloat(card.dataset.end);
@@ -100,14 +137,12 @@ export default function HeroVideo({ onVideoComplete }) {
             }
           });
 
-          // Show end banner
           if (frameIndex >= 137) {
              if (endBanner) endBanner.classList.add('visible');
           } else {
              if (endBanner) endBanner.classList.remove('visible');
           }
 
-          // Show/Hide Scroll Indicator
           const scrollIndicator = document.getElementById('scroll-indicator');
           if (scrollIndicator) {
              if (frameIndex > 3) {
@@ -117,9 +152,8 @@ export default function HeroVideo({ onVideoComplete }) {
              }
           }
 
-          // Video Complete trigger area
           if (!videoCompleteEmitted && scrollTop >= videoScrollHeight - 10) {
-            drawFrame(frameCount - 1); // hold last frame
+            drawFrame(frameCount - 1);
             videoCompleteEmitted = true;
             onVideoComplete?.(true);
           } else if (videoCompleteEmitted && scrollTop < videoScrollHeight - 10) {
@@ -128,7 +162,6 @@ export default function HeroVideo({ onVideoComplete }) {
           }
           
         } else {
-          // Past the section: hold the last frame
           drawFrame(frameCount - 1);
           if (!videoCompleteEmitted) {
             videoCompleteEmitted = true;
@@ -197,6 +230,7 @@ export default function HeroVideo({ onVideoComplete }) {
             pela classe .visible controlada pelo scroll.
         */}
         <div id="video-end-banner">
+          <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%' }}>
           {/* <div className="banner-actions banner-mobile" style={{ marginBottom: '32px', display: 'flex', alignItems: 'center', gap: '24px' }}> */}
           <div className="banner-actions banner-mobile"
             style={{ marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '24px', flexWrap: 'wrap' }}>
@@ -273,6 +307,7 @@ export default function HeroVideo({ onVideoComplete }) {
               <Calendar size={18} />
               <span>Agendar Ensaio</span>
             </a>
+          </div>
           </div>
         </div>
       </div>

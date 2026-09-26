@@ -40,19 +40,21 @@ export default function Navbar({ isVisible }) {
       <nav
       className='nav-mobile'
         style={{
-          maxWidth: 1320,
-          margin: '10px auto 0',
-          padding: '14px 28px',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
+          width: '100%',
           backgroundColor: 'rgba(23, 23, 23, 0.85)',
           backdropFilter: 'blur(20px)',
-          borderRadius: '40px',
-          border: '1px solid rgba(201, 152, 114, 0.25)',
+          borderBottom: '1px solid rgba(201, 152, 114, 0.25)',
           boxShadow: '0 15px 35px rgba(0, 0, 0, 0.6)',
         }}
       >
+        <div className="container" style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          paddingTop: '14px',
+          paddingBottom: '14px',
+          width: '100%',
+        }}>
         {/* Brand Logo */}
         <a
           href="#"
@@ -64,7 +66,7 @@ export default function Navbar({ isVisible }) {
             color: '#ffffff',
           }}
         >
-          
+          <Camera size={20} color="#c99872" />
           <span
           className='nav-title'
             style={{
@@ -149,6 +151,7 @@ export default function Navbar({ isVisible }) {
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
+        </div>
         </div>
       </nav>
 

@@ -16,7 +16,12 @@ export default function App() {
   const [videoCompleted, setVideoCompleted] = useState(false);
 
   return (
-    <div className="app-container" style={{ backgroundColor: '#171717', minHeight: '100vh', position: 'relative' }}>
+    <div className="app-container" style={{ 
+      backgroundColor: '#111111', 
+      backgroundImage: 'radial-gradient(circle at 50% 10%, rgba(201, 152, 114, 0.05) 0%, transparent 40%), radial-gradient(circle at 100% 60%, rgba(201, 152, 114, 0.04) 0%, transparent 50%), radial-gradient(circle at 0% 90%, rgba(201, 152, 114, 0.03) 0%, transparent 50%)',
+      minHeight: '100vh', 
+      position: 'relative' 
+    }}>
       {/* Luxury Cinematic Grain Texture */}
       <div className="grain-overlay" />
 

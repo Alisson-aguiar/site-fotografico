@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import ScrollFloat from './ScrollFloat';
 import { Award, Camera, HeartHandshake, Users } from 'lucide-react';
 
@@ -9,6 +9,38 @@ export default function AboutSection() {
     { value: '350+', label: 'Ensaios Realizados', icon: Award },
     { value: '200+', label: 'Clientes Atendidos', icon: Users },
   ];
+
+  const cardRef = useRef(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 30 });
+  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 30 });
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
+
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    
+    // Normalize mouse position from -0.5 to 0.5
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
+    
+    x.set(xPct);
+    y.set(yPct);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
 
   return (
     <section id="sobre" className="section-spacing" style={{ position: 'relative' }}>
@@ -28,39 +60,30 @@ export default function AboutSection() {
         >
           {/* Left Column: Photographer Photo */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             style={{
               position: 'relative',
               maxWidth: 480,
               margin: '0 auto',
+              perspective: '1000px', // Adds 3D perspective
             }}
           >
-            {/* Ambient gold glow back */}
-            <div
-              style={{
-                position: 'absolute',
-                top: -20,
-                left: -20,
-                right: 20,
-                bottom: 20,
-                border: '1px solid var(--accent-border)',
-                borderRadius: '16px',
-                zIndex: 0,
-                pointerEvents: 'none',
-              }}
-            />
-
-            <div
+            <motion.div
+              ref={cardRef}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
               style={{
                 position: 'relative',
-                borderRadius: '16px',
+                borderRadius: '24px', // Softer edges for a modern look
                 overflow: 'hidden',
                 zIndex: 1,
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                boxShadow: '0 25px 50px rgba(0, 0, 0, 0.6)',
+                boxShadow: '0 30px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(201, 152, 114, 0.1)', // Rich deep shadow with subtle glow
+                rotateX,
+                rotateY,
+                transformStyle: "preserve-3d",
               }}
             >
               <img
@@ -72,58 +95,18 @@ export default function AboutSection() {
                   width: '100%',
                   objectFit: 'cover',
                   display: 'block',
-                  filter: 'grayscale(25%) contrast(105%)',
-                  transition: 'transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease',
+                  filter: 'grayscale(20%) contrast(105%)',
+                  transition: 'filter 0.6s ease',
+                  transform: 'translateZ(20px)', // Pushes image slightly forward in 3D space
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'scale(1.04)';
-                  e.currentTarget.style.filter = 'grayscale(0%) contrast(108%)';
+                  e.currentTarget.style.filter = 'grayscale(0%) contrast(110%)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'scale(1)';
-                  e.currentTarget.style.filter = 'grayscale(25%) contrast(105%)';
+                  e.currentTarget.style.filter = 'grayscale(20%) contrast(105%)';
                 }}
               />
-
-              {/* Bottom vignette overlay */}
-              <div
-                style={{
-                  position: 'absolute',
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  height: '40%',
-                  background: 'linear-gradient(to top, rgba(23, 23, 23, 0.95), transparent)',
-                  display: 'flex',
-                  alignItems: 'flex-end',
-                  padding: '24px',
-                }}
-              >
-                <div>
-                  <p
-                    style={{
-                      fontFamily: "'Cinzel', serif",
-                      fontSize: '1.2rem',
-                      letterSpacing: '0.1em',
-                      color: '#ffffff',
-                      marginBottom: '4px',
-                    }}
-                  >
-                    Henrique Judson
-                  </p>
-                  <p
-                    style={{
-                      fontSize: '0.85rem',
-                      color: '#c99872',
-                      letterSpacing: '0.15em',
-                      textTransform: 'uppercase',
-                    }}
-                  >
-                    Diretor Criativo & Fotógrafo
-                  </p>
-                </div>
-              </div>
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* Right Column: Bio & TextPressure & Stats */}
