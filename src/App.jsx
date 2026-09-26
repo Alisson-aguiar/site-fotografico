@@ -41,7 +41,7 @@ export default function App() {
         2. Banner Principal & Sequential Sections
         Structure: Vídeo ➜ Banner ➜ Sobre ➜ Serviços ➜ Diferenciais ➜ Portfólio ➜ Trabalhos em destaque ➜ Processo ➜ CTA ➜ Rodapé
       */}
-      <main style={{ position: 'relative', zIndex: 20 }}>
+      <main style={{ position: 'relative', zIndex: 20, overflowX: 'hidden' }}>
         {/* 3. Seção 1 — Sobre o Fotógrafo with Text Pressure & Stats */}
         <AboutSection />
 

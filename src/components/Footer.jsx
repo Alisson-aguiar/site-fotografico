@@ -16,6 +16,7 @@ export default function Footer() {
         paddingBottom: '40px',
         position: 'relative',
         zIndex: 10,
+        overflowX: 'hidden',
       }}
     >
       <div className="container">
